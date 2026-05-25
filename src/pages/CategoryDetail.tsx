@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, CheckCircle, Search } from 'lucide-react';
 import { ProductCard } from '../components/ui-custom/ProductCard';
 import { Button } from '../components/ui/button';
+import { SEO } from '../components/SEO';
 
 // Mock category data
 const CATEGORY_DATA: Record<string, any> = {
@@ -116,8 +117,23 @@ export function CategoryDetail() {
     window.scrollTo(0,0);
   }, [categorySlug, dbCategoryName]);
 
+  const categorySchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": data.name,
+    "description": data.description,
+    "url": `https://aurasurfaces.com/products/${categorySlug}`,
+    "image": data.heroImage
+  };
+
   return (
     <div className="bg-background min-h-screen">
+      <SEO 
+        title={`${data.name} — Premium Collections`} 
+        description={data.description}
+        image={data.heroImage}
+        schema={categorySchema}
+      />
       {/* 1. CATEGORY HERO */}
       <section className="relative h-[60vh] min-h-[500px] flex items-center pt-20">
         <div 

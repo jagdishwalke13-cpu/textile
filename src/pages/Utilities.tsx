@@ -3,12 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, LayoutDashboard } from 'lucide-react';
 import { TileCalculator } from '../components/utilities/TileCalculator';
 import { RoomVisualizer } from '../components/utilities/RoomVisualizer';
+import { SEO } from '../components/SEO';
 
 export function Utilities() {
   const [activeTab, setActiveTab] = useState<'calculator' | 'visualizer'>('calculator');
 
   return (
     <div className="bg-background min-h-screen pt-20">
+      <SEO 
+        title="Tile Calculator & 3D Room Visualizer" 
+        description="Plan your renovations with precision. Use our premium Tile Quantity Calculator to find exact tile counts and box estimates, or visualize surfaces in our 3D Room Visualizer."
+      />
       
       {/* 1. HERO */}
       <section className="py-20 bg-muted border-b border-border/50 text-center relative overflow-hidden">

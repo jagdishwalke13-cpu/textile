@@ -4,6 +4,7 @@ import { Download, FileText, Send } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { DownloadModal } from '../components/brochure/DownloadModal';
 import { toast } from 'sonner';
+import { SEO } from '../components/SEO';
 
 const BROCHURES = [
   {
@@ -81,6 +82,10 @@ export function Brochure() {
 
   return (
     <div className="bg-background min-h-screen pt-20">
+      <SEO 
+        title="Download Premium Tiles & Technical Catalogs" 
+        description="Access and download Aura Surfaces' complete premium porcelain slabs, outdoor tiles, and ceramic tile catalogs. Explore luxury textures, collections, and technical specifications."
+      />
       <DownloadModal 
         isOpen={!!selectedBrochure} 
         onClose={() => setSelectedBrochure(null)} 

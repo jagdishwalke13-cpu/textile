@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Globe, ShieldCheck, Ship, Box, FileText, Headphones, CheckCircle, Ship as ShipIcon } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
+import { SEO } from '../components/SEO';
 
 export function Export() {
   const [formData, setFormData] = useState({
@@ -58,6 +59,10 @@ export function Export() {
 
   return (
     <div className="bg-background min-h-screen pt-20">
+      <SEO 
+        title="Global Tile Export & International Trade" 
+        description="Aura Surfaces is a leading exporter of premium vitrified, porcelain slabs, and ceramic tiles to over 50+ countries. Get container load rates, FOB/CIF pricing, CE/ISO specs, and custom logs."
+      />
       {/* 1. HERO */}
       <section className="relative overflow-hidden bg-brand-secondary text-white py-24 md:py-32">
         <div className="absolute inset-0 z-0 opacity-10 flex items-center justify-center">
