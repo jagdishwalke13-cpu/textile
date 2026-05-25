@@ -1,0 +1,6 @@
+{
+  "name": "Luxury Tiles Catalog",
+  "description": "Premium luxury-level tiles business catalog website design system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

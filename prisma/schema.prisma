@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Enums converted to comments for SQLite compatibility (SQLite does not support native enums)
+// enum ProductCategory {
+//   PORCELAIN_SLAB
+//   CERAMIC
+//   OUTDOOR
+//   SPECIAL
+// }
+
+// enum QualityGrade {
+//   STANDARD
+//   PREMIUM
+//   LUXURY
+// }
+
+model Product {
+  id                String          @id @default(uuid())
+  name              String
+  slug              String          @unique
+  description       String
+  shortDescription  String?
+  category          String          // ProductCategory: PORCELAIN_SLAB, CERAMIC, OUTDOOR, SPECIAL
+  subCategory       String?
+  sizes             String          @default("[]")   // Stored as JSON string
+  finishes          String          @default("[]")   // Stored as JSON string
+  application       String          @default("[]")   // Stored as JSON string
+  thickness         String?
+  waterAbsorption   String?
+  moq               String?
+  packagingDetails  String?
+  technicalSpecs    String          @default("{}")   // Stored as JSON string
+  images            String          @default("[]")   // Stored as JSON string
+  isFeatured        Boolean         @default(false)
+  isNew             Boolean         @default(false)
+  isBestSeller      Boolean         @default(false)
+  isExportQuality   Boolean         @default(false)
+  qualityGrade      String          @default("PREMIUM") // QualityGrade: STANDARD, PREMIUM, LUXURY
+  downloadableFiles String          @default("{}")   // Stored as JSON string
+  sortOrder         Int             @default(0)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+}
+
+// enum InquiryType {
+//   PRODUCT
+//   EXPORT
+//   SHOWROOM
+//   GENERAL
+//   BROCHURE
+//   SAMPLE
+// }
+
+// enum InquiryStatus {
+//   NEW
+//   READ
+//   IN_PROGRESS
+//   CLOSED
+// }
+
+model Inquiry {
+  id                String        @id @default(uuid())
+  type              String        // InquiryType: PRODUCT, EXPORT, SHOWROOM, GENERAL, BROCHURE, SAMPLE
+  name              String
+  email             String
+  phone             String
+  city              String?
+  country           String?
+  address           String?
+  company           String?
+  productInterest   String        @default("[]")   // Stored as JSON string
+  projectType       String?
+  quantityEstimate  String?
+  message           String
+  referenceImageUrl String?
+  source            String?
+  status            String        @default("NEW") // InquiryStatus: NEW, READ, IN_PROGRESS, CLOSED
+  adminNotes        String?
+  assignedTo        String?
+  resolvedAt        DateTime?
+  createdAt         DateTime      @default(now())
+}
+
+model Brochure {
+  id            String   @id @default(uuid())
+  title         String
+  description   String?
+  coverImage    String?
+  fileUrl       String
+  fileSize      String?
+  downloadCount Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+}
+
+model BrochureDownload {
+  id         String   @id @default(uuid())
+  brochureId String
+  name       String
+  email      String
+  phone      String
+  company    String?
+  city       String?
+  createdAt  DateTime @default(now())
+}
+
+model Admin {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  name      String
+  role      String    @default("ADMIN")
+  lastLogin DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model SiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+}
